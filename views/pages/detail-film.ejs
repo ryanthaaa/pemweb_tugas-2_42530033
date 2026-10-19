@@ -1,0 +1,28 @@
+<%- include('../partials/header', { title: film.title }) %>
+<%- include('../partials/navbar') %>
+
+<main class="container">
+  <a href="/">&#8592; Kembali ke katalog</a>
+
+  <article class="film-detail">
+    <img
+      class="detail-poster"
+      src="<%= film.poster %>"
+      alt="Poster film <%= film.title %>"
+    >
+
+    <div class="detail-info">
+      <h1><%= film.title %></h1>
+
+      <p><strong>Tahun rilis:</strong> <%= film.year %></p>
+      <p><strong>Genre:</strong> <%= film.genre %></p>
+      <p><strong>Sutradara:</strong> <%= film.director %></p>
+      <p><strong>Durasi:</strong> <%= film.duration %></p>
+
+      <h2>Sinopsis</h2>
+      <p><%= film.synopsis %></p>
+    </div>
+  </article>
+</main>
+
+<%- include('../partials/footer') %>

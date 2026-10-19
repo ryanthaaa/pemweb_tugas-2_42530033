@@ -1,0 +1,69 @@
+
+<%- include('../partials/header', { title: 'Katalog Film' }) %>
+<%- include('../partials/navbar') %>
+
+<main class="container">
+  <h1>Temukan Film Favoritmu</h1>
+  <p>Jelajahi berbagai film dan temukan cerita yang menarik untukmu.</p>
+
+  <form action="/" method="GET" class="filter-form">
+    <label for="genre">Filter berdasarkan genre:</label>
+
+    <select id="genre" name="genre">
+      <option value="">Semua Genre</option>
+
+      <option value="Action"
+        <%= selectedGenre.toLowerCase() === 'action' ? 'selected' : '' %>>Action
+      </option>
+
+      <option value="Sci-Fi"
+        <%= selectedGenre.toLowerCase() === 'sci-fi' ? 'selected' : '' %>>Sci-Fi
+      </option>
+
+      <option value="Crime"
+        <%= selectedGenre.toLowerCase() === 'crime' ? 'selected' : '' %>>Crime
+      </option>
+
+      <option value="Fantasy"
+        <%= selectedGenre.toLowerCase() === 'fantasy' ? 'selected' : '' %>>Fantasy
+      </option>
+
+      <option value="Comedy"
+        <%= selectedGenre.toLowerCase() === 'comedy' ? 'selected' : '' %>>Comedy
+      </option>
+
+      <option value="Horror"
+        <%= selectedGenre.toLowerCase() === 'horror' ? 'selected' : '' %>>Horror
+      </option>
+
+      <option value="Thriller"
+        <%= selectedGenre.toLowerCase() === 'thriller' ? 'selected' : '' %>>Thriller
+      </option>
+    </select>
+
+    <button type="submit">Filter</button>
+  </form>
+
+  <section class="film-grid" aria-label="Daftar film">
+
+    <% if (films.length === 0) { %>
+      <p>Tidak ada film yang ditemukan.</p>
+    <% } %>
+
+    <% films.forEach((film) => { %>
+      <article class="film-card">
+        <a href="/films/<%= film.id %>">
+          <img src="<%= film.poster %>" alt="Poster film <%= film.title %>" loading="lazy">
+          <div class="film-info">
+            <h2><%= film.title %></h2>
+            <p><%= film.year %> · <%= film.genre %></p>
+            <span>Lihat detail →</span>
+          </div>
+        </a>
+      </article>
+    <% }) %>
+
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
